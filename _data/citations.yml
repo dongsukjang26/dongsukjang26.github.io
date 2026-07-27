@@ -1,14 +1,18 @@
 metadata:
-  last_updated: '2026-06-19'
+  last_updated: '2026-07-27'
 papers:
   3kKt0YkAAAAJ:2osOgNQ5qMEC:
-    citations: 5
+    citations: 7
     title: 'MedTutor: A Retrieval-Augmented LLM System for Case-Based Medical Education'
     year: '2025'
   3kKt0YkAAAAJ:9yKSN-GCB0IC:
     citations: 4
     title: 'Yalenlp@ peranssumm 2025: Multi-perspective integration via mixture-of-agents for enhanced healthcare qa summarization'
     year: '2025'
+  3kKt0YkAAAAJ:qjMakFHDy7sC:
+    citations: 0
+    title: Is the Geometry Doing the Work? An Operating-Point Audit of Hierarchy in Hyperbolic Vision-Language Models
+    year: '2026'
   3kKt0YkAAAAJ:u-x6o8ySG0sC:
     citations: 0
     title: 'LoraMap: Harnessing the Power of LoRA Connections'
