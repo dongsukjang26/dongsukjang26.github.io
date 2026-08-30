@@ -74,21 +74,21 @@ ninja.data = [{
         title: 'GitHub',
         section: 'Socials',
         handler: () => {
-          window.open("https://github.com/jamesjang26", "_blank");
+          window.open("https://github.com/dongsukjang26", "_blank");
         },
       },{
         id: 'social-linkedin',
         title: 'LinkedIn',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.linkedin.com/in/jamesjang26", "_blank");
+          window.open("https://www.linkedin.com/in/dongsukjang26", "_blank");
         },
       },{
         id: 'social-x',
         title: 'X',
         section: 'Socials',
         handler: () => {
-          window.open("https://twitter.com/jamesjang26", "_blank");
+          window.open("https://twitter.com/dongsukjang26", "_blank");
         },
       },{
         id: 'social-scholar',
