@@ -3,9 +3,9 @@
 # for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
 cv_pdf: /assets/pdf/Dongsuk_CV.pdf # path to your CV PDF file
 email: jamesjang26@snu.ac.kr # your email address
-github_username: jamesjang26
-linkedin_username: jamesjang26
-x_username: jamesjang26
+github_username: dongsukjang26
+linkedin_username: dongsukjang26
+x_username: dongsukjang26
 # rss_icon: true # commented to hide RSS icon
 scholar_userid: 3kKt0YkAAAAJ # your Google Scholar ID
 # wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)

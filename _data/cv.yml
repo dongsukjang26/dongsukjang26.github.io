@@ -8,11 +8,11 @@ cv:
 
   social_networks:
     - network: X
-      username: jamesjang26
+      username: dongsukjang26
     - network: GitHub
-      username: jamesjang26
+      username: dongsukjang26
     - network: LinkedIn
-      username: jamesjang26
+      username: dongsukjang26
 
   sections:
     Education:
@@ -22,7 +22,7 @@ cv:
         area: Medical Informatics (NLP)
         studyType: M.S.
         start_date: 2023
-        end_date: Present
+        end_date: 2026
         highlights:
           - "Advisor: Prof. Jinwook Choi"
           - "MEDINFO Lab"
@@ -33,7 +33,7 @@ cv:
         area: Visiting Student Researcher
         studyType: Visiting
         start_date: 2024
-        end_date: 2024
+        end_date: 2025
         highlights:
           - "Advisor: Prof. Arman Cohan"
           - "YaleNLP Lab"
@@ -43,7 +43,7 @@ cv:
         url: https://www.skku.edu/
         area: Integrative Biotechnology
         studyType: B.S.
-        start_date: 2017
+        start_date: 2015
         end_date: 2023
         highlights:
           - "Military Service: KATUSA (2019-2021)"
@@ -53,7 +53,7 @@ cv:
         position: Visiting Student Researcher
         location: New Haven, CT, USA
         start_date: 2024
-        end_date: 2024
+        end_date: 2025
         summary: Research on medical NLP and RAG systems for clinical applications.
         highlights:
           - Developed MedTutor system for case-based medical education
@@ -63,7 +63,7 @@ cv:
         position: Graduate Research Assistant
         location: Seoul, South Korea
         start_date: 2023
-        end_date: Present
+        end_date: 2026
         summary: Research on NLP applications in healthcare and medicine.
         highlights:
           - Medical information extraction from clinical narratives
