@@ -30,7 +30,21 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "news-presented-our-paper-automated-information-extraction-from-thyroid-operation-narrative-a-comparative-study-of-gpt-4-and-fine-tuned-koelectra-at-amia-informatics-summit-2024",
+        },{id: "dropdown-travel",
+              title: "travel",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/travel/";
+              },
+            },{id: "dropdown-music",
+              title: "music",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/music/";
+              },
+            },{id: "news-presented-our-paper-automated-information-extraction-from-thyroid-operation-narrative-a-comparative-study-of-gpt-4-and-fine-tuned-koelectra-at-amia-informatics-summit-2024",
           title: '🔈 Presented our paper “Automated Information Extraction from Thyroid Operation Narrative: A Comparative...',
           description: "",
           section: "News",},{id: "news-started-visiting-research-at-yalenlp-with-prof-arman-cohan",
