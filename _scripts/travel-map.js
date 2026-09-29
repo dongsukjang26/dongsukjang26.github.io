@@ -149,10 +149,6 @@ mapEl.addEventListener(
   { capture: true }
 );
 
-root.querySelector(".travel-hint").textContent = L.Browser.mobile
-  ? "Drag to move, pinch to zoom, tap a pin to see its photos."
-  : `Drag to move, ${isMac ? "pinch or ⌘ + scroll" : "Ctrl + scroll"} or double-click to zoom, click a pin to see its photos.`;
-
 /* Pins */
 
 function gallery(place) {
@@ -185,7 +181,7 @@ function popupContent(place) {
       "div",
       { class: "travel-popup-body" },
       el("div", { class: "travel-popup-title" }, place.name),
-      el("div", { class: "travel-popup-meta" }, typeTag(place), [place.country, formatDate(place.date)].filter(Boolean).join(" · ")),
+      el("div", { class: "travel-popup-meta" }, typeTag(place), [place.country, formatDate(place.date)].filter(Boolean).join(", ")),
       place.note ? el("p", {}, place.note) : null,
       el(
         "div",
@@ -251,19 +247,12 @@ root.querySelector(".travel-stats").textContent = [
   plural(places.length, "place"),
   plural(countries, "country", "countries"),
   plural(photoCount, "photo"),
-].join(" · ");
+].join(", ");
 
 const cards = new Map();
 const timeline = root.querySelector(".travel-timeline");
-let currentYear = null;
-let grid = null;
-for (const place of places) {
-  const year = String(place.date).slice(0, 4);
-  if (year !== currentYear) {
-    currentYear = year;
-    grid = el("div", { class: "travel-cards" });
-    timeline.append(el("h2", { class: "travel-year" }, year), grid);
-  }
+
+function placeCard(place) {
   const card = el(
     "button",
     { type: "button", class: "travel-card", onclick: () => focusPlace(place) },
@@ -276,12 +265,85 @@ for (const place of places) {
         "span",
         { class: "travel-card-meta" },
         typeTag(place),
-        [place.country, formatDate(place.date), place.photos.length ? plural(place.photos.length, "photo") : null].filter(Boolean).join(" · ")
+        [place.country, formatDate(place.date), place.photos.length ? plural(place.photos.length, "photo") : null].filter(Boolean).join(", ")
       )
     )
   );
   cards.set(place.id, card);
-  grid.append(card);
+  return card;
+}
+
+// Zoom in closer than the world view so a trip's pins come out of their cluster
+function showTrip(stops) {
+  map.closePopup();
+  mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
+  map.flyToBounds(L.latLngBounds(stops.map((place) => [place.lat, place.lng])), { padding: [60, 60], maxZoom: 10, duration: 1.2 });
+}
+
+// A trip folds its places into one row that opens to show each place's card
+function tripGroup({ trip, stops }) {
+  const photos = stops.reduce((sum, place) => sum + place.photos.length, 0);
+  const first = formatDate(stops.at(-1).date);
+  const last = formatDate(stops[0].date);
+  const covers = stops.filter((place) => place.photos.length).slice(0, 6); // more slices would get too thin
+  return el(
+    "details",
+    { class: "travel-trip" },
+    el(
+      "summary",
+      {},
+      el("span", { class: "travel-trip-covers" }, ...covers.map((place) => thumbImg(place, place.photos[0], 480))),
+      el(
+        "span",
+        { class: "travel-trip-text" },
+        el("span", { class: "travel-trip-title" }, trip),
+        el(
+          "span",
+          { class: "travel-trip-meta" },
+          [first === last ? first : `${first} – ${last}`, plural(stops.length, "place"), plural(photos, "photo")].join(", ")
+        ),
+        el("span", { class: "travel-trip-stops" }, stops.map((place) => place.name).join(", "))
+      ),
+      el(
+        "button",
+        {
+          type: "button",
+          class: "travel-trip-map",
+          onclick: (event) => {
+            event.preventDefault(); // don't also open/close the trip
+            showTrip(stops);
+          },
+        },
+        "Show on map"
+      )
+    ),
+    el("div", { class: "travel-cards" }, ...stops.map(placeCard))
+  );
+}
+
+// Places sharing a `trip` name in the same year become one group; the rest stay single cards
+const years = new Map();
+for (const place of places) {
+  const year = String(place.date).slice(0, 4);
+  if (!years.has(year)) years.set(year, []);
+  const items = years.get(year);
+  const trip = place.trip && items.find((item) => item.trip === place.trip);
+  if (trip) trip.stops.push(place);
+  else items.push({ trip: place.trip || null, stops: [place] });
+}
+for (const [year, items] of years) {
+  const section = el("section", { class: "travel-year-section" }, el("h2", { class: "travel-year" }, year));
+  let loose = null;
+  for (const item of items) {
+    if (item.trip) {
+      section.append(tripGroup(item));
+      loose = null;
+    } else {
+      if (!loose) section.append((loose = el("div", { class: "travel-cards" })));
+      loose.append(placeCard(item.stops[0]));
+    }
+  }
+  timeline.append(section);
 }
 
 const typeOrder = Object.keys(TYPES);
@@ -298,10 +360,10 @@ if (presentTypes.length > 1) {
     cluster.addLayers(shown.map((place) => markers.get(place.id)));
     for (const place of places) cards.get(place.id).hidden = !shown.includes(place);
     fitTo(shown);
-    for (const section of timeline.querySelectorAll(".travel-cards")) {
-      const empty = [...section.children].every((card) => card.hidden);
-      section.hidden = empty;
-      section.previousElementSibling.hidden = empty;
+    for (const grid of timeline.querySelectorAll(".travel-cards")) grid.hidden = [...grid.children].every((card) => card.hidden);
+    for (const trip of timeline.querySelectorAll(".travel-trip")) trip.hidden = trip.querySelector(".travel-cards").hidden;
+    for (const section of timeline.querySelectorAll(".travel-year-section")) {
+      section.hidden = [...section.querySelectorAll(":scope > .travel-trip, :scope > .travel-cards")].every((node) => node.hidden);
     }
   };
   chips = [null, ...presentTypes].map((key) => {

@@ -6,6 +6,8 @@
 # lat/lng  coordinates (right-click a spot in Google Maps to copy them)
 # date     "YYYY-MM" or "YYYY-MM-DD" (keep the quotes)
 # type     ski | tennis | golf | trip (sets the pin color and the filter)
+# trip     optional trip name; places with the same trip in the same year are grouped
+#          into one row below the map (e.g. Miami, Key West and Everglades as "Florida")
 # note     optional one-line memo shown in the popup
 # post     optional link to a related blog post, e.g. /blog/2024/my-post/
 # photos   list of photos; each one uses either
@@ -19,14 +21,121 @@
   country: Japan
   lat: 42.8625
   lng: 140.6987
-  date: "2024-02"
+  date: "2024-02-12"
   type: ski
+  trip: "Niseko Ski Trip"
   note: My first solo ski trip abroad.
   photos:
-    - file: niseko-panorama.jpg
-      w: 2400
-      h: 670
-      caption: Mt. Yōtei from the slopes of Niseko, Feb 2024
+    - file: IMG_2381.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2187.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_2198.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2229.jpg
+      w: 2796
+      h: 1290
+    - file: IMG_2267.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2334.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2338.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2343.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2352.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2363.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2390.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2402.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_2404.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2407.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_2438.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2439.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2454.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2531.jpg
+      w: 4032
+      h: 3024
+
+- id: new-chitose-airport
+  name: New Chitose Airport
+  country: Japan
+  lat: 42.7752
+  lng: 141.6923
+  date: "2024-02-12"
+  type: trip
+  trip: "Niseko Ski Trip"
+  photos:
+    - file: IMG_2150.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2154.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2168.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2174.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2658.jpg
+      w: 3024
+      h: 4032
+
+- id: sapporo
+  name: Sapporo
+  country: Japan
+  lat: 43.0618
+  lng: 141.3545
+  date: "2024-02-16"
+  type: trip
+  trip: "Niseko Ski Trip"
+  photos:
+    - file: IMG_2564.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2567.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2570.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2575.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2596.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2601.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2619.jpg
+      w: 4284
+      h: 5712
 
 - id: key-west
   name: Key West
@@ -35,6 +144,7 @@
   lng: -81.78
   date: "2026-03-23"
   type: trip
+  trip: Florida Trip
   photos:
     - file: IMG_6774.jpg
       w: 4284
@@ -71,6 +181,7 @@
   lng: -80.1918
   date: "2026-03-24"
   type: trip
+  trip: Florida Trip
   photos:
     - file: IMG_7255.jpg
       w: 4284
@@ -113,6 +224,7 @@
   lng: -80.8987
   date: "2026-03-22"
   type: trip
+  trip: Florida Trip
   photos:
     - file: IMG_6125.jpg
       w: 5712
@@ -126,3 +238,278 @@
     - file: IMG_7176.jpg
       w: 5712
       h: 4284
+
+- id: boston
+  name: Boston
+  country: United States
+  lat: 42.3601
+  lng: -71.0589
+  date: "2024-03-17"
+  type: trip
+  trip: "2024 AMIA Informatics"
+  photos:
+    - file: IMG_3268.jpg
+      w: 5712
+      h: 4284
+    - file: classicu-2024-03-17-163635.jpg
+      w: 2688
+      h: 4032
+    - file: IMG_3381.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_3421.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_3524.jpg
+      w: 4032
+      h: 2268
+    - file: IMG_3526.jpg
+      w: 4032
+      h: 2268
+    - file: IMG_3617.jpg
+      w: 5712
+      h: 3213
+    - file: FullSizeRender.jpg
+      w: 2268
+      h: 4032
+    - file: IMG_3903.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_4400.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_4594.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_4641.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_5718.jpg
+      w: 3520
+      h: 1980
+    - file: IMG_4723.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_4739.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_4807.jpg
+      w: 3024
+      h: 4032
+
+- id: manhattan
+  name: Manhattan
+  country: United States
+  lat: 40.7831
+  lng: -73.9712
+  date: "2024-03-21"
+  type: trip
+  trip: "2024 AMIA Informatics"
+  photos:
+    - file: IMG_4860.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_4910.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_4929.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_4984.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_5006.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_5028.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_5069.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_5202.jpg
+      w: 5712
+      h: 3213
+    - file: IMG_5299.jpg
+      w: 4032
+      h: 2268
+
+- id: vancouver
+  name: Vancouver
+  country: Canada
+  lat: 49.2827
+  lng: -123.1207
+  date: "2025-02-19"
+  type: trip
+  trip: "Whistler Blackcomb Ski Trip"
+  photos:
+    - file: IMG_1774.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_1786.jpg
+      w: 3024
+      h: 4032
+
+- id: whistler
+  name: Whistler
+  country: Canada
+  lat: 50.1163
+  lng: -122.9574
+  date: "2025-02-21"
+  type: ski
+  trip: "Whistler Blackcomb Ski Trip"
+  photos:
+    - file: IMG_2042.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_7978.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_8015.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_1764.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_1768.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_2636.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2720.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2837.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_2842.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2847.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2859.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_2899.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2973.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2979.png
+      w: 1290
+      h: 2796
+    - file: IMG_3010.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_3034.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_3046.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_3047.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_3057.png
+      w: 1290
+      h: 2796
+
+- id: sequoia
+  name: Sequoia
+  country: United States
+  lat: 36.4864
+  lng: -118.5658
+  date: "2025-07-06"
+  type: trip
+  trip: California Trip
+  photos:
+    - file: IMG_9351.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_9002.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_0658.jpg
+      w: 4284
+      h: 5712
+
+- id: yosemite
+  name: Yosemite
+  country: United States
+  lat: 37.8651
+  lng: -119.5383
+  date: "2025-07-07"
+  type: trip
+  trip: California Trip
+  photos:
+    - file: IMG_1708.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_1715.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_0224.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_0289.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_0317.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_0374.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_0550.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_0811.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2640.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2654.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_1666.jpg
+      w: 1980
+      h: 3520
+    - file: IMG_3206.jpg
+      w: 4284
+      h: 5712
+
+- id: lake-tahoe
+  name: Lake Tahoe
+  country: United States
+  lat: 39.0968
+  lng: -120.0324
+  date: "2025-07-10"
+  type: trip
+  trip: California Trip
+  photos:
+    - file: IMG_2060.jpg
+      w: 8064
+      h: 6048
+
+- id: napa-valley
+  name: Napa Valley
+  country: United States
+  lat: 38.5025
+  lng: -122.2654
+  date: "2025-07-11"
+  type: trip
+  trip: California Trip
+  photos:
+    - file: IMG_4409.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2578.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_4463.jpg
+      w: 4284
+      h: 5712

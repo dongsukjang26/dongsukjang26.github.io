@@ -47,6 +47,7 @@
     z-index: 0;
     height: 60vh;
     min-height: 360px;
+    margin-bottom: 1.5rem;
     border: 1px solid var(--global-divider-color);
     border-radius: 0.5rem;
 
@@ -80,12 +81,6 @@
     }
   }
 
-  .travel-hint {
-    margin: 0.4rem 0 1.5rem;
-    color: var(--global-text-color-light);
-    font-size: 0.8rem;
-  }
-
   .travel-year {
     margin: 1.5rem 0 0.75rem;
     font-size: 1.25rem;
@@ -95,6 +90,102 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .travel-trip {
+    margin-bottom: 1rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.5rem;
+    background: var(--global-card-bg-color);
+
+    > summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem 0.9rem;
+      padding: 0.75rem 0.9rem;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      // Chevron that turns when the trip opens
+      &::after {
+        content: "";
+        width: 0.55em;
+        height: 0.55em;
+        margin: 0 0.3rem 0 0.2rem;
+        border-right: 2px solid var(--global-text-color-light);
+        border-bottom: 2px solid var(--global-text-color-light);
+        transform: rotate(45deg);
+        transition: transform 0.15s ease;
+      }
+    }
+
+    &[open] > summary::after {
+      transform: rotate(-135deg);
+    }
+
+    > .travel-cards {
+      margin: 0;
+      padding: 0 0.9rem 0.9rem;
+    }
+  }
+
+  // One fixed box (the size of three covers); each place gets an equal slice of it,
+  // so the text starts at the same spot whatever the number of places
+  .travel-trip-covers {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2px;
+    width: 128px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 0.4rem;
+    background: var(--global-divider-color);
+
+    img {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .travel-trip-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 10rem;
+  }
+
+  .travel-trip-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .travel-trip-meta,
+  .travel-trip-stops {
+    color: var(--global-text-color-light);
+    font-size: 0.85rem;
+  }
+
+  .travel-trip-map {
+    padding: 0.2rem 0.75rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+    }
   }
 
   .travel-card {
