@@ -1,0 +1,203 @@
+/*******************************************************************************
+ * Music log page (_pages/music.md, assets/js/music-log.js)
+ ******************************************************************************/
+
+.music {
+  .music-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .music-count {
+    margin-right: auto;
+    color: var(--global-text-color-light);
+  }
+
+  .music-toggle {
+    padding: 0.25rem 0.85rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+    }
+  }
+
+  details {
+    border-top: 1px solid var(--global-divider-color);
+
+    > summary {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      // Chevron that turns when the section opens
+      &::before {
+        content: "";
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(-45deg);
+        transition: transform 0.15s ease;
+      }
+
+      &:hover {
+        color: var(--global-theme-color);
+      }
+    }
+
+    &[open] > summary::before {
+      transform: rotate(45deg);
+    }
+  }
+
+  .music-year > summary {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .music-month {
+    margin-left: 1.25rem;
+
+    > summary {
+      font-size: 1.1rem;
+    }
+  }
+
+  .music-badge {
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    background: var(--global-divider-color);
+    color: var(--global-text-color-light);
+    font-size: 0.8rem;
+  }
+
+  .music-entries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 0.25rem 0 1.25rem;
+  }
+
+  .music-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    time {
+      color: var(--global-text-color-light);
+      font-size: 0.85rem;
+    }
+  }
+
+  .music-embed {
+    overflow: hidden;
+    border-radius: 0.75rem;
+    word-break: break-all;
+
+    iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+    &.is-youtube iframe {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+  }
+
+  .music-yt {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: opacity 0.15s ease;
+    }
+
+    &:hover img {
+      opacity: 1;
+    }
+  }
+
+  .music-yt-title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 0.6rem 0.8rem 1.5rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .music-yt-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    transform: translate(-50%, -50%);
+    transition: background 0.15s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 54%;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid #fff;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .music-yt:hover .music-yt-play {
+    background: #f00;
+  }
+
+  .music-note {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .music-empty {
+    color: var(--global-text-color-light);
+  }
+}

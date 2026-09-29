@@ -1,0 +1,12 @@
+# Songs and videos I listened to, shown on /music/ grouped by year and month.
+# Order doesn't matter; the page sorts by date. Songs on the same day keep the order written here.
+#
+# date  "YYYY-MM-DD" (keep the quotes)
+# url   share link from YouTube, YouTube Music, Spotify, Apple Music or SoundCloud
+#       (any other link shows up as a plain link)
+# note  optional one-line memo
+
+- date: "2026-09-30"
+  url: https://youtu.be/QCNHK00VLS8?si=4QDGcizr4FLT710z
+- date: "2026-09-30"
+  url: https://youtu.be/9WVIxx8EfdM?si=LiLMbNhe9c9i-3cL

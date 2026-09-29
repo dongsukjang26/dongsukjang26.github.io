@@ -1,0 +1,128 @@
+# Places shown on the travel map (/travel/). Each entry is one pin.
+#
+# id       unique slug; local photos live in assets/img/travel/<id>/
+# name     place name shown on the map
+# country  country name (used for the "countries" count)
+# lat/lng  coordinates (right-click a spot in Google Maps to copy them)
+# date     "YYYY-MM" or "YYYY-MM-DD" (keep the quotes)
+# type     ski | tennis | golf | trip (sets the pin color and the filter)
+# note     optional one-line memo shown in the popup
+# post     optional link to a related blog post, e.g. /blog/2024/my-post/
+# photos   list of photos; each one uses either
+#            file: name of an image in assets/img/travel/<id>/
+#            url:  full URL of an image hosted elsewhere (thumb: optional smaller URL)
+#          w/h optional pixel width/height; without them the viewer measures the image first
+#          caption optional text shown under the photo
+
+- id: niseko
+  name: Niseko
+  country: Japan
+  lat: 42.8625
+  lng: 140.6987
+  date: "2024-02"
+  type: ski
+  note: My first solo ski trip abroad.
+  photos:
+    - file: niseko-panorama.jpg
+      w: 2400
+      h: 670
+      caption: Mt. Yōtei from the slopes of Niseko, Feb 2024
+
+- id: key-west
+  name: Key West
+  country: United States
+  lat: 24.5551
+  lng: -81.78
+  date: "2026-03-23"
+  type: trip
+  photos:
+    - file: IMG_6774.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_6787.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_1875.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_1908.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_6895.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_6900.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7014.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_7019.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7094.jpg
+      w: 3024
+      h: 4032
+
+- id: miami
+  name: Miami
+  country: United States
+  lat: 25.7617
+  lng: -80.1918
+  date: "2026-03-24"
+  type: trip
+  photos:
+    - file: IMG_7255.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_7295.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_7393.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_2007.jpg
+      w: 4284
+      h: 5712
+    - file: IMG_7553.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7563.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_7567.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_7642.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7662.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7671.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_7676.jpg
+      w: 3024
+      h: 4032
+
+- id: everglades
+  name: Everglades
+  country: United States
+  lat: 25.2866
+  lng: -80.8987
+  date: "2026-03-22"
+  type: trip
+  photos:
+    - file: IMG_6125.jpg
+      w: 5712
+      h: 4284
+    - file: IMG_1425.jpg
+      w: 4032
+      h: 3024
+    - file: IMG_7124.jpg
+      w: 3024
+      h: 4032
+    - file: IMG_7176.jpg
+      w: 5712
+      h: 4284

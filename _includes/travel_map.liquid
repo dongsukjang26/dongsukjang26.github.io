@@ -1,0 +1,29 @@
+<link
+  rel="stylesheet"
+  href="{{ site.third_party_libraries.leaflet-markercluster.url.css }}"
+  integrity="{{ site.third_party_libraries.leaflet-markercluster.integrity.css }}"
+  crossorigin="anonymous"
+>
+
+<div
+  class="travel"
+  data-img-base="{{ '/assets/img/travel/' | relative_url }}"
+>
+  <p class="travel-stats"></p>
+  <div class="travel-filters" role="group" aria-label="Filter places by type"></div>
+  <div class="travel-map" aria-label="Map of places I've been to"></div>
+  <p class="travel-hint"></p>
+  <div class="travel-timeline"></div>
+</div>
+
+<script type="application/json" id="travel-data">
+  {{ site.data.travels | jsonify }}
+</script>
+<!-- defer: this needs Leaflet, which scripts.liquid loads at the end of the page -->
+<script
+  defer
+  src="{{ site.third_party_libraries.leaflet-markercluster.url.js }}"
+  integrity="{{ site.third_party_libraries.leaflet-markercluster.integrity.js }}"
+  crossorigin="anonymous"
+></script>
+<script type="module" src="{{ '/assets/js/travel-map.js' | relative_url }}"></script>

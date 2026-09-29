@@ -1,0 +1,370 @@
+/*******************************************************************************
+ * Travel map page (_pages/travel.md, _scripts/travel-map.js)
+ ******************************************************************************/
+
+.travel {
+  .travel-stats {
+    color: var(--global-text-color-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .travel-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .travel-chip {
+    padding: 0.25rem 0.85rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+    }
+
+    &[aria-pressed="true"] {
+      border-color: var(--global-theme-color);
+      background: var(--global-theme-color);
+      color: var(--global-hover-text-color);
+    }
+
+    .travel-type {
+      margin-right: 0;
+    }
+  }
+
+  .travel-map {
+    z-index: 0;
+    height: 60vh;
+    min-height: 360px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.5rem;
+
+    &.is-dark .leaflet-tile-pane {
+      filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+    }
+
+    .leaflet-bar a {
+      border-bottom-color: var(--global-divider-color);
+      background: var(--global-card-bg-color);
+      color: var(--global-text-color);
+    }
+
+    .travel-zoom-tip {
+      position: absolute;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-size: 1.1rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+
+      &.is-visible {
+        opacity: 1;
+      }
+    }
+  }
+
+  .travel-hint {
+    margin: 0.4rem 0 1.5rem;
+    color: var(--global-text-color-light);
+    font-size: 0.8rem;
+  }
+
+  .travel-year {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .travel-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .travel-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.5rem;
+    background: var(--global-card-bg-color);
+    color: var(--global-text-color);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    img,
+    .travel-card-placeholder {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .travel-card-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--global-divider-color);
+      color: var(--global-text-color-light);
+      font-size: 1.75rem;
+    }
+
+    .travel-card-body {
+      display: block;
+      padding: 0.6rem 0.8rem 0.75rem;
+    }
+
+    .travel-card-title {
+      display: block;
+      font-weight: 600;
+    }
+
+    .travel-card-meta {
+      display: block;
+      color: var(--global-text-color-light);
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.travel-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-right: 0.5em;
+
+  &::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--pin-color);
+  }
+}
+
+// Teardrop pin: a rotated square with one sharp corner pointing down at the location
+.travel-pin {
+  border: none;
+  background: none;
+
+  span {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 50% 50% 50% 0;
+    background: var(--pin-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transform: rotate(-45deg);
+    transition: transform 0.15s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:hover span,
+  &:focus span {
+    transform: rotate(-45deg) scale(1.15);
+  }
+}
+
+.travel-cluster {
+  border: none;
+  background: none;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--global-theme-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+}
+
+.travel-leaflet-popup {
+  .leaflet-popup-content-wrapper {
+    overflow: hidden;
+    padding: 0;
+    border-radius: 0.6rem;
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    background: var(--global-card-bg-color);
+    color: var(--global-text-color);
+  }
+
+  .leaflet-popup-content {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  a.leaflet-popup-close-button {
+    color: #fff;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.travel-popup {
+  .travel-popup-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    &.is-two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.is-many .travel-popup-tile:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  .travel-popup-tile {
+    display: block;
+    padding: 0;
+    border: none;
+    background: var(--global-divider-color);
+    cursor: zoom-in;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      transition: opacity 0.15s ease;
+    }
+
+    &:hover img {
+      opacity: 0.85;
+    }
+  }
+
+  .travel-popup-cover {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+  }
+
+  .travel-popup-body {
+    padding: 0.7rem 0.9rem 0.8rem;
+  }
+
+  .travel-popup-title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .travel-popup-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--global-text-color-light);
+    font-size: 0.8rem;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+  }
+
+  .travel-popup-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.6rem;
+
+    &:empty {
+      display: none;
+    }
+
+    button {
+      padding: 0.2rem 0.7rem;
+      border: none;
+      border-radius: 999px;
+      background: var(--global-theme-color);
+      color: var(--global-hover-text-color);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    a {
+      color: var(--global-theme-color);
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.pswp__travel-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  max-width: 90%;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.4rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  transform: translateX(-50%);
+
+  &:empty {
+    display: none;
+  }
+}

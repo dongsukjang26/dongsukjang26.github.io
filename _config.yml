@@ -132,6 +132,15 @@ disqus_shortname: al-folio # put your disqus shortname
 # external_sources:
 
 # -----------------------------------------------------------------------------
+# Travel map (/travel/)
+# -----------------------------------------------------------------------------
+
+# CARTO basemap tiles. The key ends up in the public page source, so restrict it to
+# this site's domain in the CARTO dashboard. Leave empty to fall back to OpenStreetMap tiles.
+travel_map:
+  carto_api_key: cb1_43gb_1_17e72b018758e12a2f568fcb
+
+# -----------------------------------------------------------------------------
 # Newsletter
 # -----------------------------------------------------------------------------
 
@@ -486,17 +495,26 @@ third_party_libraries:
     version: "3.6.0"
   leaflet:
     integrity:
-      css: "sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ="
-      js: "sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg="
+      css: "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      js: "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       js_map: "sha256-YAoQ3FzREN4GmVENMir8vgHHypC0xfSK3CAxTHCqx1M="
     local:
       images: "images/"
     url:
-      css: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/leaflet.min.css"
+      # use Leaflet's own dist files; jsDelivr's auto-minified .min.css changed and broke the pinned hash
+      css: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/leaflet.css"
       images: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/images/"
-      js: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/leaflet.min.js"
+      js: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/leaflet.js"
       js_map: "https://cdn.jsdelivr.net/npm/leaflet@{{version}}/dist/leaflet.js.map"
     version: "1.9.4"
+  leaflet-markercluster:
+    integrity:
+      css: "sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc="
+      js: "sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg="
+    url:
+      css: "https://cdn.jsdelivr.net/npm/leaflet.markercluster@{{version}}/dist/MarkerCluster.css"
+      js: "https://cdn.jsdelivr.net/npm/leaflet.markercluster@{{version}}/dist/leaflet.markercluster.js"
+    version: "1.5.3"
   lightbox2:
     integrity:
       css: "sha256-uypRbsAiJcFInM/ndyI/JHpzNe6DtUNXaWEUWEPfMGo="

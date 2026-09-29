@@ -1,0 +1,67 @@
+{% assign entries = site.data.music %}
+<div class="music">
+  {% if entries and entries.size > 0 %}
+    {% assign entries = entries | sort: 'date' | reverse %}
+    <div class="music-toolbar">
+      <span class="music-count">
+        {{- entries.size }}
+        {% if entries.size == 1 %}song{% else %}songs{% endif -%}
+      </span>
+      <button type="button" class="music-toggle" data-open="true">Expand all</button>
+      <button type="button" class="music-toggle" data-open="false">Collapse all</button>
+    </div>
+
+    {% assign years = entries | group_by_exp: 'entry', "entry.date | date: '%Y'" %}
+    {% for year in years %}
+      <details
+        class="music-year"
+        {% if forloop.first %}
+          open
+        {% endif %}
+      >
+        <summary>
+          <span class="music-year-label">{{ year.name }}</span>
+          <span class="music-badge">{{ year.size }}</span>
+        </summary>
+
+        {% assign months = year.items | group_by_exp: 'entry', "entry.date | date: '%Y-%m'" %}
+        {% for month in months %}
+          {% assign month_start = month.name | append: '-01' %}
+          <details
+            class="music-month"
+            {% if forloop.first and forloop.parentloop.first %}
+              open
+            {% endif %}
+          >
+            <summary>
+              <span>{{ month_start | date: '%B' }}</span>
+              <span class="music-badge">{{ month.size }}</span>
+            </summary>
+            <div class="music-entries">
+              {% comment %} Newest day first; songs on the same day keep their order in _data/music.yml {% endcomment %}
+              {% assign days = month.items | map: 'date' | uniq %}
+              {% for day in days %}
+                {% assign day_entries = site.data.music | where: 'date', day %}
+                {% for entry in day_entries %}
+                  <article class="music-entry" data-url="{{ entry.url | escape }}">
+                    <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: '%b %-d, %a' }}</time>
+                    <div class="music-embed">
+                      <a href="{{ entry.url | escape }}" target="_blank" rel="noopener">{{ entry.url | escape }}</a>
+                    </div>
+                    {% if entry.note %}
+                      <p class="music-note">{{ entry.note | escape }}</p>
+                    {% endif %}
+                  </article>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </details>
+        {% endfor %}
+      </details>
+    {% endfor %}
+  {% else %}
+    <p class="music-empty">No songs yet.</p>
+  {% endif %}
+</div>
+
+<script defer src="{{ '/assets/js/music-log.js' | relative_url | bust_file_cache }}"></script>
